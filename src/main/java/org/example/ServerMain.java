@@ -6,18 +6,18 @@ import org.example.service.GreeterImpl;
 
 import java.io.IOException;
 
-public class Main {
+public class ServerMain {
     public static void main(String[] args) {
         try {
-            /* *
-             * Do not forget to install maven. The grpc stub classes are generated when you run the protoc compiler
-             * and it finds a service declaration in your proto file.
-             * Do not forget the client must use the same port in order to connect to this server.
-             * */
+            // 서버 listen
             Server server = ServerBuilder.forPort(8999).addService(new GreeterImpl()).build();
 
+            // 서버 구동
             server.start();
+            // 서버 구동 로깅
             System.out.println("Server started at " + server.getPort());
+
+            // 서버 대기
             server.awaitTermination();
         } catch (IOException e) {
             System.out.println("Error: " + e);
